@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html>
+  <script>
+    var searchTerm = document.getElementById('searchInput').value;
+    var url = "https://www.irs.gov/filing/federal-income-tax-rates-and-brackets" + encodeURIComponent(searchTerm);
+  </script>
+  
   <head>
   	<title>Financial Calculator</title>
   </head>
@@ -12,5 +17,13 @@
       <li><a href="SECOND_PAGE.html">Next Page</li>
       </ul>
     </div>
+
+    <div class="main_container">
+      <div>
+        <input type="text" id="searchbarMonitor" placeholder="What service are you looking for today?">
+        <button onclick="searchBooks()">Search</button>
+      </div>
+
+      <div id="viewerCanvas" style="width: 600px; height:500px"></div>
   </body>
 </html>
