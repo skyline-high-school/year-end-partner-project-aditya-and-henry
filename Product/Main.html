@@ -18,9 +18,12 @@
       resultsContainer.innerHTML = ' ';
     
   </script>
-  
+  <style>
+    body {background-color: rgb(199, 144, 124);}  
+  </style>
+
   <head>
-  	<title>Financial Calculator</title>
+  	<title style="color: blueviolet;">Financial Calculator</title>
   </head>
   <body id="main">
     <div class="header">
@@ -36,6 +39,9 @@
       <div>
         <input type="text" id="searchbarMonitor" placeholder="What service are you looking for today?">
         <button onclick="searchBooks()">Search</button>
+      </div>
+      <div>
+        <img style="height: 250px; width: 250px;" src="IRSLogo.png" alt="IRS Logo">  
       </div>
 
       <div id="viewerCanvas" style="width: 600px; height:500px"></div>
