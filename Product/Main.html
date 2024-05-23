@@ -1,25 +1,94 @@
 <!DOCTYPE html>
 <html>
-  <script>
-    var searchTerm = document.getElementById('searchInput').value;
-    var url = "https://www.irs.gov/filing/federal-income-tax-rates-and-brackets" + encodeURIComponent(searchTerm);
+<script>
+    function searchBooks() {
+      var searchTerm = document.getElementById('searchInput').value;
+      var url = "https://api.coindesk.com/v1/bpi/currentprice.json" + encodeURIComponent(searchTerm); // Use a valid API endpoint
 
-    fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      displayResults(data);
-    }) 
-     .catch(error => {
-       console.error('Error fetching data:', error);
-    });
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          displayResults(data);
+        }) 
+        .catch(error => {
+          console.error('Sorry there was an eror fetching your data:', error);
+        });
+    }
 
     function displayResults(data) {
       var resultsContainer = document.getElementById('results');
-      resultsContainer.innerHTML = ' ';
-    
-  </script>
+      resultsContainer.innerHTML = ''; 
+      if (Array.isArray(data) && data.length > 0) {
+        data.forEach(result => {
+          var resultElement = document.createElement('div');
+          resultElement.className = 'result-item';
+          resultElement.textContent = JSON.stringify(result, null, 2);
+          resultsContainer.appendChild(resultElement);
+        });
+      } else {
+        resultsContainer.textContent = 'No results found.';
+      }
+    }
+</script>
+
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    .header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 0;
+      text-align: center;
+    }
+    .nav-links {
+      background-color: #444;
+      padding: 10px 0;
+      text-align: center;
+    }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+    }
+    .main_container {
+      padding: 20px;
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    #searchInput {
+      width: calc(100% - 110px);
+      padding: 10px;
+      margin-right: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #28a745;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    #results {
+      margin-top: 20px;
+    }
+    .result-item {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+</style>
   
-  <head>
+<head>
   	<title>Financial Calculator</title>
   </head>
   <body id="main">
