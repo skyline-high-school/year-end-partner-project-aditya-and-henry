@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <script>
-    var searchTerm = document.getElementById('searchInput').value;
-    var url = "https://www.irs.gov/filing/federal-income-tax-rates-and-brackets" + encodeURIComponent(searchTerm);
+<script>
+    function searchBooks() {
+      var searchTerm = document.getElementById('searchInput').value;
+      var url = "https://api.coindesk.com/v1/bpi/currentprice.json" + encodeURIComponent(searchTerm); // Use a valid API endpoint
 
-    fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      displayResults(data);
-    }) 
-     .catch(error => {
-       console.error('Error fetching data:', error);
-    });
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          displayResults(data);
+        }) 
+        .catch(error => {
+          console.error('Sorry there was an eror fetching your data:', error);
+        });
+    }
 
     function displayResults(data) {
       var resultsContainer = document.getElementById('results');
       resultsContainer.innerHTML = ' ';
     
   </script>
-  <style>
-    body {background-color: rgb(199, 144, 124);}  
-  </style>
-
+  
   <head>
-  	<title style="color: blueviolet;">Financial Calculator</title>
+  	<title>Financial Calculator</title>
   </head>
   <body id="main">
     <div class="header">
