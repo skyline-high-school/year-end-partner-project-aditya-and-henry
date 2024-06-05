@@ -1,93 +1,243 @@
 <!DOCTYPE html>
 <html>
-<script>
-    function searchTax() {
-      //var searchTerm = document.getElementById('searchInput').value;
-      var url = "https://api.coindesk.com/v1/bpi/currentprice.json" //+ encodeURIComponent(searchTerm); // Use a valid API endpoint
-
-      fetch(url)
-        .then(response => response.json())
-        .then(data => {
-          displayResults(data);
-        }) 
-        .catch(error => {
-          console.error('Sorry there was an eror fetching your data:', error);
-        });
+  <script>
+    function fetchBitcoin() {
+        fetch('https://api.coindesk.com/v1/bpi/currentprice/BTC.json')
+            .then(response => response.json())
+            .then(data => displayCrypto('Bitcoin', data.bpi.USD.rate, 'USD'))
+            .catch(error => console.error('Error fetching Bitcoin data:', error));
+    }
+    function fetchEthereum() {
+        fetch('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD')
+            .then(response => response.json())
+            .then(data => displayCrypto('Ethereum', data.USD, 'USD'))
+            .catch(error => console.error('Error fetching Ethereum data:', error));
     }
 
-    function displayResults(data) {
+    function displayCrypto(cryptoName, rate, currency) {
       var resultsContainer = document.getElementById('results');
       resultsContainer.innerHTML = '';
-      var bitcoinData = data.bpi;
-      
-      Object.keys(bitcoinData).forEach(function(currency) {
-                var card = document.createElement('div');
-                card.classList.add('results-card');
+      var output = `1 ${cryptoName} is ${rate} ${currency}`;
+      resultsContainer.innerHTML = `<div class = "results-card"><h3>${cryptoName}</h3><p>${output}</p><div>`;
+  }
 
-                var currencyHeader = document.createElement('h3');
-                currencyHeader.textContent = currency;
-                card.appendChild(currencyHeader);
+    function fetchCurrencyRate(){
+      fetch('https://api.exchangerate-api.com/v4/latest/USD')
+      .then(response => response.json())
+      .then(data => updateMarquee(data.rates))
+      .catch(error => console.error('Error fetching currency rates:', error));
+    }
 
-                var rateParagraph = document.createElement('p');
-                rateParagraph.textContent = 'Rate: ' + bitcoinData[currency].rate;
-                card.appendChild(rateParagraph);
-
-                resultsContainer.appendChild(card);
-      });
-      //resultsContainer.innerHTML = '<h2>Current Price of Bitcoin:</h2>';
-      //resultsContainer.innerHTML += '<p>USD: ' + data.bpi.USD.rate + '</p>';
-      //resultsContainer.innerHTML += '<p>GBP: ' + data.bpi.GBP.rate + '</p>';
-      //resultsContainer.innerHTML += '<p>EUR: ' + data.bpi.EUR.rate + '</p>';
+    function updateMarquee(rates) {
+            var marquee = document.getElementById('marquee');
+            var marqueeContent = 'Current Exchange Rates:   ';
+            for (var currency in rates) {
+                if (rates.hasOwnProperty(currency)) {
+                    marqueeContent += ` ${currency}: ${rates[currency]}`;
+                    marqueeContent += '\xa0\xa0\xa0';
+                }
+            }
+            marquee.textContent = marqueeContent;
+        }
+    window.onload = function() {
+      fetchCurrencyRate();
     }
   </script>
   
 
-
-
   <style>
-      body {
-        background-color: antiquewhite;
-
-      }
-      .header {
-        text-align: center;
-        margin-bottom: 10px;
-      }
-      .main_container {
+    body {
+        background-color: #f5f5f5;
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+        color: #333;
+    }
+    .container {
         display: flex;
         align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        background-color: #6c757d;
+    }
+    .header {
+        text-align: center;
+        margin-bottom: 10px;
+        background-color: #495057;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        flex-grow: 1;
+    }
+    .nav-links {
+        text-align: center;
+        margin: 20px;
+    }
+    .nav-links ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    .nav-links li {
+        display: inline;
+        margin-right: 10px;
+    }
+    .nav-links a {
+        text-decoration: none;
+        color: #007bff;
+        margin-left: 15px;
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-size: 20px;
+    }
+    .nav-links a:hover {
+        text-decoration: underline;
+        color: brown;
+    }
+    .irs-logo {
+        height: auto;
+        width: 150px;
+        margin-right: 20px;
+    }
+    .search-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .search-container input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        width: 300px;
+        margin-right: 10px;
+    }
+    .search-container button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 4px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+    }
+    .search-container button:hover {
+        background-color: #0056b3;
+    }
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         justify-content: center;
-      }
-      .irslogo {
-        display: block;
-        margin-top: 0px;
-      }
-      
-  </style>
+        margin-top: 20px;
+        border: 2px solid #007bff;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .results-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 80%;
+        max-width: 600px;
+        text-align: center;
+        transition: transform 0.2s ease-in-out;
+    }
+    .results-card:hover {
+        transform: scale(1.05);
+    }
+    .results-card h3 {
+        margin-top: 0;
+        color: #007bff;
+    }
+    .results-card p {
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+    .results-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+    .button-row {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        margin-top: 30px;
+    }
+    .button-row button {
+        margin: 0 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 4px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+    }
+    .button-row button:hover {
+        background-color: #0056b3;
+    }
+    .marquee-container {
+        overflow: hidden;
+        white-space: nowrap;
+        box-sizing: border-box;
+        padding: 10px 0;
+        background-color: #007bff;
+        color: white;
+    }
+    .marquee {
+        display: inline-block;
+        padding-left: 100%;
+        animation: marquee 100s linear infinite;
+    }
+    @keyframes marquee {
+        0% {
+            transform: translate(0, 0);
+        }
+        100% {
+            transform: translate(-100%, 0);
+        }
+    }
+</style>
 
-
-  <head>
-  	<title>Financial Calculator</title>
-  </head>
-  <body id="main">
-    <div class="header">
-      <h1>Welcome to your Financial Helper</h1>
-      <img id="irslogo" style="height: 250px; width: 250px;" src="IRSLogo.png" alt="IRS Logo">  
+</head>
+<body>
+    <div class="container">
+        <img class="irs-logo" src="IRSLogo.png" alt="IRS Logo">
+        <div class="header">
+            <h1>Welcome to your Financial Helper</h1>
+        </div>
     </div>
     <div class="nav-links">
-      <ul>
-      <li><a href="SECOND_PAGE.html">Next Page</a></li>
-      </ul>
+        <ul>
+            <li style="font-size: 22px; color: brown; font-family: 'Times New Roman', Times, serif;">Helpful Links:</li>
+            <li><a href="https://irs.gov" target="_blank">IRS</a></li>
+            <li><a href="https://treasury.gov" target="_blank">U.S. Treasury</a></li>
+            <li><a href="https://bofa.com" target="_blank">Bank of America</a></li>
+            <li><a href="https://chase.com" target="_blank">Chase Bank</a></li>
+            <li><a href="https://JPmorgan.com" target="_blank">JP Morgan Investment Bank</a></li>
+            <li><a href="https://key.com" target="_blank">Key Bank</a></li>
+            <li><a href="https://bannerbank.com" target="_blank">Banner Bank</a></li>
+            <li><a href="https://becu.com" target="_blank">BECU Bank</a></li>
+
+        </ul>
+    </div>
+    <div class="marquee-container">
+      <div id="marquee" class="marquee"></div>
+  </div>
+    <div class="button-row">
+        <button onclick="fetchBitcoin()">Bitcoin</button>
+        <button onclick="fetchEthereum()">Ethereum</button>
+        <button onclick="fetchCurrencyRate()">Update the Exchange Rates</button>
+    </div>
+    <div class="main-container">
+        <div id="results" class="results-container"></div>
     </div>
 
-    <div class="main_container">
-      <div>
-        <input type="text" id="searchbarMonitor" placeholder="What service are you looking for today?">
-        <button onclick="searchTax()">Search</button>
-      </div>
-      <div id = "results"></div>
-      
-      <div id="viewerCanvas" style="width: 600px; height:500px"></div>
-    </div>
-  </body>
 </html>
+
+
+
