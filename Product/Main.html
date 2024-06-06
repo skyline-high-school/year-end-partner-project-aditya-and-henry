@@ -6,39 +6,39 @@
   <script>
     function fetchBitcoin() { //function to get the live Bitcoin price from API
         fetch('https://api.coindesk.com/v1/bpi/currentprice/BTC.json')
-        .then(response => response.json())
-        .then(data => displayCrypto('Bitcoin', data.bpi.USD.rate, 'USD'))
-        .catch(error => console.error('Error fetching Bitcoin data:', error));
+         .then(response => response.json())
+         .then(data => displayCrypto('Bitcoin', data.bpi.USD.rate, 'USD'))
+         .catch(error => console.error('Error fetching Bitcoin data:', error));
     }
     function fetchEthereum() { //function to get the live Etheruem price from API
         fetch('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD')
-        .then(response => response.json())
-        .then(data => displayCrypto('Ethereum', data.USD, 'USD'))
-        .catch(error => console.error('Error fetching Ethereum data:', error));
+         .then(response => response.json())
+         .then(data => displayCrypto('Ethereum', data.USD, 'USD'))
+         .catch(error => console.error('Error fetching Ethereum data:', error));
     }
     function fetchLitecoin() { //function to get the live Litecoin price from API
         fetch('https://min-api.cryptocompare.com/data/price?fsym=LTC&tsyms=USD')
-        .then(response => response.json())
-        .then(data => displayCrypto('Litecoin', data.USD, 'USD'))
-        .catch(error => console.error('Error fetching Litecoin data:', error));
+         .then(response => response.json())
+         .then(data => displayCrypto('Litecoin', data.USD, 'USD'))
+         .catch(error => console.error('Error fetching Litecoin data:', error));
     }  
     function fetchDogecoin() { //function to get the live Dodgecoin price from API
         fetch('https://min-api.cryptocompare.com/data/price?fsym=DOGE&tsyms=USD')
-        .then(response => response.json())
-        .then(data => displayCrypto('Dogecoin', data.USD, 'USD'))
-        .catch(error => console.error('Error fetching Dogecoin data:', error));
+         .then(response => response.json())
+         .then(data => displayCrypto('Dogecoin', data.USD, 'USD'))
+         .catch(error => console.error('Error fetching Dogecoin data:', error));
     }
     function fetchQTUM() { //function to get the live QTUM price from API
         fetch('https://min-api.cryptocompare.com/data/price?fsym=QTUM&tsyms=USD')
-        .then(response => response.json())
-        .then(data => displayCrypto('Qtum', data.USD, 'USD'))
-        .catch(error => console.error('Error fetching Qtum data:', error));
+         .then(response => response.json())
+         .then(data => displayCrypto('Qtum', data.USD, 'USD'))
+         .catch(error => console.error('Error fetching Qtum data:', error));
     }
     function fetchZcash() { //function to get the live Zcash price from API
         fetch('https://min-api.cryptocompare.com/data/price?fsym=ZEC&tsyms=USD')
-        .then(response => response.json())
-        .then(data => displayCrypto('Zcash', data.USD, 'USD'))
-        .catch(error => console.error('Error fetching Zcash data:', error));
+         .then(response => response.json())
+         .then(data => displayCrypto('Zcash', data.USD, 'USD'))
+         .catch(error => console.error('Error fetching Zcash data:', error));
     }
 
     function displayCrypto(cryptoName, rate, currency) { //function tp show and format the price of each crypto
@@ -50,9 +50,9 @@
 
     function fetchCurrencyRate(){ //call to API to get live currency updates
       fetch('https://api.exchangerate-api.com/v4/latest/USD')
-      .then(response => response.json())
-      .then(data => updateMarquee(data.rates))
-      .catch(error => console.error('Unfortunatley, there was an error fetching currency rates:', error));
+       .then(response => response.json())
+       .then(data => updateMarquee(data.rates))
+       .catch(error => console.error('Unfortunatley, there was an error fetching currency rates:', error));
     }
 
     function updateMarquee(rates) { //update the marquee with the new prices
@@ -105,7 +105,8 @@
           const taxableIncome = Math.min(income, bracket.range[1]) - previousRangesEnd;
           tax += taxableIncome * bracket.rate;
           previousRangesEnd = bracket.range[1];
-          if (income <= bracket.range[1]) break; //the way taxes work in the US is that if you make 50,000 a year, the first 9950 will be charged at 10%, the next 29000 at 12%, etc. So it is a different calculation rather than just taking 22% of 50,000 USD.
+          if (income <= bracket.range[1]) break; //the way taxes work in the US is that if you make 50,000 a year, the first 9950 will be charged at 10%, the next 29000 at 12%, etc. 
+          //So it is a different calculation rather than just taking 22% of 50,000 USD.
         }
       }
       const taxResult = document.getElementById('taxResult');
@@ -146,8 +147,7 @@
   </script>
   
 
-
-
+  
 </head>
 <body>
     <div class="container">
