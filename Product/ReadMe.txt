@@ -1,1 +1,0 @@
-Our application is the Finance Buddy and it provides various functions to help you financially. For instance, it can show live currency rates, cryptocurrency conversions, tax calculators, and savings breakdowns.
