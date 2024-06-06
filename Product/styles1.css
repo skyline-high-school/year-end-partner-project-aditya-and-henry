@@ -1,0 +1,219 @@
+body {
+    background-color: #f7f4f4;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #6c757d;
+}
+.header {
+    text-align: center;
+    margin-bottom: 10px;
+    background-color: #495057;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    flex-grow: 1;
+}
+.links {
+    text-align: center;
+    margin: 20px;
+}
+.links ul {
+    list-style-type: none;
+    padding: 0;
+}
+.links li {
+    display: inline;
+    margin-right: 10px;
+}
+.links a {
+    text-decoration: none;
+    color: #007bff;
+    margin-left: 15px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+}
+.links a:hover {
+    text-decoration: underline;
+    color: brown;
+}
+.irs-logo {
+    height: auto;
+    width: 150px;
+    margin-right: 20px;
+}
+.searchContainer {
+    text-align: center;
+    margin-top: 20px;
+}
+.searchContainer input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 300px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+.searchContainer button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+.searchContainer button:hover {
+    background-color: #0056b3;
+}
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    border: 2px solid #007bff;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.resultscard {
+    background-color: bisque;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+.resultscard:hover {
+    transform: scale(1.05);
+}
+.resultscard h3 {
+    margin-top: 0;
+    color: #007bff;
+    background-color: bisque;
+}
+.resultscard p {
+    margin-bottom: 10px;
+    font-size: 18px;
+    background-color: bisque;
+}
+.resultscontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.button-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+.button-row button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+.button-row button:hover {
+    background-color: #0056b3;
+}
+.marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    padding: 10px 0;
+    background-color: #007bff;
+    color: white;
+}
+.marquee {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 100s linear infinite;
+}
+@keyframes marquee {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(-100%, 0);
+    }
+}
+.marquee:hover{
+    animation-play-state: paused;
+}
+#sectionLabel {
+  margin-bottom: 20px;
+  color: #0d1b11;
+}
+
+.tax-assistant {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#taxBrackets {
+    list-style-type: none;
+    padding: 0;
+    margin: 5px auto;
+    max-width: 600px;
+}
+
+#taxBrackets li {
+    background-color: #e1f3ec;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 18px;
+    text-align: left;
+    transition: transform 0.2s ease-in-out;
+}
+
+#taxBrackets li:hover {
+    transform: scale(1.15);
+}
+
+.resultscontainer {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.searchContainer {
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+#taxResult p {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+#savingsResult p {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff;
+}
